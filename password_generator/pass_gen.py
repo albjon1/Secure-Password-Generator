@@ -88,6 +88,7 @@ pass_lbl = tk.Label(
  font='consolas')
 pass_lbl.pack(pady=5)
 
+# Version Label
 ver_lbl = tk.Label(
  window, bg='grey12',
  fg='#C8C8C8',
