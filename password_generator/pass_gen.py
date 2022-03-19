@@ -96,5 +96,4 @@ ver_lbl = tk.Label(
  font='consolas')
 ver_lbl.pack(anchor='sw', side='bottom')
 
-
 window.mainloop()
