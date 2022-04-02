@@ -1,1 +1,1 @@
-# Secure password generator V1.0 
+# Secure password generator
