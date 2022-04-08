@@ -85,7 +85,7 @@ input_box.pack(pady=20)
 # Theme Buttons
 light_theme_button = tk.Button(
  window,
- text="Light",
+ text='Light',
  command=light,
  bg='grey12',
  fg='#C8C8C8')
@@ -93,7 +93,7 @@ light_theme_button.pack(anchor='se', side='bottom')
 
 dark_theme_button = tk.Button(
  window,
- text="Dark",
+ text='Dark ',
  command=dark,
  bg='grey12',
  fg='#C8C8C8')
@@ -102,7 +102,7 @@ dark_theme_button.pack(anchor='se', side='bottom')
 # Generate Button
 generate_button = tk.Button(
  window,
- text="Generate",
+ text='Generate',
  command=generate_pass,
  bg='grey12',
  fg='#C8C8C8')
@@ -111,7 +111,7 @@ generate_button.pack(pady=5)
 # Clear Button
 clear_button = tk.Button(
  window,
- text="Clear",
+ text='Clear',
  command=clear_password,
  bg='grey12',
  fg='#C8C8C8')
