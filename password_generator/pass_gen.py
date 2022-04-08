@@ -36,6 +36,28 @@ def clear_password():
     pass_lbl.config(text=generated_pass_list)
 
 
+def light():
+    window.configure(bg='white')
+    title_lbl.config(bg='white', fg='black')
+    input_box.config(bg='white', fg='black')
+    dark_theme_button.config(bg='white', fg='black')
+    light_theme_button.config(bg='white', fg='black')
+    generate_button.config(bg='white', fg='black')
+    clear_button.config(bg='white', fg='black')
+    pass_lbl.config(bg='white', fg='black')
+
+
+def dark():
+    window.configure(bg='grey12')
+    title_lbl.config(bg='grey12', fg='#C8C8C8')
+    input_box.config(bg='grey12', fg='#C8C8C8')
+    dark_theme_button.config(bg='grey12', fg='#C8C8C8')
+    light_theme_button.config(bg='grey12', fg='#C8C8C8')
+    generate_button.config(bg='grey12', fg='#C8C8C8')
+    clear_button.config(bg='grey12', fg='#C8C8C8')
+    pass_lbl.config(bg='grey12', fg='#C8C8C8')
+
+
 def creator(message):
     return message
 
@@ -51,7 +73,6 @@ title_lbl = tk.Label(
  font='consolas')
 title_lbl.pack()
 
-
 # Password Length Entry Widget
 input_box = tk.Entry(
  window,
@@ -60,6 +81,23 @@ input_box = tk.Entry(
  selectbackground='#C8C8C8',
  insertbackground='#C8C8C8')
 input_box.pack(pady=20)
+
+# Theme Buttons
+light_theme_button = tk.Button(
+ window,
+ text="Light",
+ command=light,
+ bg='grey12',
+ fg='#C8C8C8')
+light_theme_button.pack(anchor='se', side='bottom')
+
+dark_theme_button = tk.Button(
+ window,
+ text="Dark",
+ command=dark,
+ bg='grey12',
+ fg='#C8C8C8')
+dark_theme_button.pack(anchor='se', side='bottom')
 
 # Generate Button
 generate_button = tk.Button(
@@ -87,13 +125,5 @@ pass_lbl = tk.Label(
  text=generated_pass_list,
  font='consolas')
 pass_lbl.pack(pady=5)
-
-# Version Label
-ver_lbl = tk.Label(
- window, bg='grey12',
- fg='#C8C8C8',
- text='V1.0',
- font='consolas')
-ver_lbl.pack(anchor='sw', side='bottom')
 
 window.mainloop()
