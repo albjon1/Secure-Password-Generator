@@ -11,7 +11,7 @@ window.configure(bg='grey12')
 window.iconphoto(False, tk.PhotoImage(file='icon.png'))
 window.resizable(width=False, height=False)
 
-random_chars = '''52E*M1mO*x#l6C*3GUTi@DwAJ*9g1H#34@7*YbN53yX*j0k_8
+chars_str = '''52E*M1mO*x#l6C*3GUTi@DwAJ*9g1H#34@7*YbN53yX*j0k_8
 zqh_os5v3a_RFWZ_fXH54ewD9_*YsBKcEMyTFPjNCoU0*@9hmGrtO3qn3_ixL4@*2gI'''
 generated_pass_list = []
 
@@ -21,8 +21,9 @@ def generate_pass():
     pass_input_len = int(input_box.get())
     if pass_input_len >= 10 and pass_input_len <= 40:
         for i in range(pass_input_len):
-            list_choice = random.choice(random_chars)
+            list_choice = random.choice(chars_str)
             generated_pass_list.append(list_choice)
+            random.shuffle(generated_pass_list)
         final_pass = ''.join(generated_pass_list)
         pass_lbl.config(text=f'Password: {final_pass}')
     elif pass_input_len > 40:
@@ -42,7 +43,12 @@ def clipboard():
         text = final_pass
         clip_command = 'echo ' + text + '| clip'
         os.system(clip_command)
-        copy_label = tk.Label(window, text='Copied to clipboard!', font='consolas', bg='grey12', fg='green')
+        copy_label = tk.Label(
+         window,
+         text='Copied to clipboard!',
+         font='consolas',
+         bg='grey12',
+         fg='green')
         copy_label.pack(pady=21)
 
 
