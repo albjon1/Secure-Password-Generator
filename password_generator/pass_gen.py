@@ -1,6 +1,7 @@
 import tkinter as tk
 import random
 import ctypes as ct
+import os
 
 # Window
 window = tk.Tk()
@@ -10,12 +11,13 @@ window.configure(bg='grey12')
 window.iconphoto(False, tk.PhotoImage(file='icon.png'))
 window.resizable(width=False, height=False)
 
-random_chars = '''52EMmOx#l6C3GUTi@DwAJ9g1H#@7*YbNyX*j
-0k8zqhosva_RFWZfPcdKerLS4up_IBnQtV'''
+random_chars = '''52E*M1mO*x#l6C*3GUTi@DwAJ*9g1H#34@7*YbN53yX*j0k_8
+zqh_os5v3a_RFWZ_fXH54ewD9_*YsBKcEMyTFPjNCoU0*@9hmGrtO3qn3_ixL4@*2gI'''
 generated_pass_list = []
 
 
 def generate_pass():
+    global final_pass
     pass_input_len = int(input_box.get())
     if pass_input_len >= 10 and pass_input_len <= 40:
         for i in range(pass_input_len):
@@ -31,9 +33,34 @@ def generate_pass():
          0, 'Password length must be 10 or more', 'Error Raised', 0)
 
 
+def clipboard():
+    global copy_label
+    if len(generated_pass_list) == 0:
+        ct.windll.user32.MessageBoxW(
+         0, 'Password has not been generated yet', 'Error Raised', 0)
+    else:
+        text = final_pass
+        clip_command = 'echo ' + text + '| clip'
+        os.system(clip_command)
+        copy_label = tk.Label(window, text='Copied to clipboard!', font='consolas', bg='grey12', fg='green')
+        copy_label.pack(pady=21)
+
+
 def clear_password():
     generated_pass_list.clear()
     pass_lbl.config(text=generated_pass_list)
+    copy_label.destroy()
+
+
+def save():
+    if len(generated_pass_list) == 0:
+        ct.windll.user32.MessageBoxW(
+         0, 'Password has not been generated yet', 'Error Raised', 0)
+    else:
+        with open('password.txt', 'w') as pswd_file:
+            pswd_file.write(f'Password -> {final_pass}')
+        ct.windll.user32.MessageBoxW(
+         0, 'Successfully saved password', 'Success', 0)
 
 
 def light():
@@ -45,6 +72,8 @@ def light():
     generate_button.config(bg='white', fg='black')
     clear_button.config(bg='white', fg='black')
     pass_lbl.config(bg='white', fg='black')
+    clipboard_button.config(bg='white', fg='black')
+    save_button.config(bg='white', fg='black')
 
 
 def dark():
@@ -56,14 +85,11 @@ def dark():
     generate_button.config(bg='grey12', fg='#C8C8C8')
     clear_button.config(bg='grey12', fg='#C8C8C8')
     pass_lbl.config(bg='grey12', fg='#C8C8C8')
+    clipboard_button.config(bg='grey12', fg='#C8C8C8')
+    save_button.config(bg='grey12', fg='#C8C8C8')
 
 
-def creator(message):
-    return message
-
-
-print(creator('built by albjon V1.0'))
-
+print('built by albjon V1.0')
 # Enter Password Length Label
 title_lbl = tk.Label(
  window,
@@ -85,19 +111,19 @@ input_box.pack(pady=20)
 # Theme Buttons
 light_theme_button = tk.Button(
  window,
- text='Light',
+ text=' 🌕 ',
  command=light,
  bg='grey12',
  fg='#C8C8C8')
-light_theme_button.pack(anchor='se', side='bottom')
+light_theme_button.place(x=77, y=1)
 
 dark_theme_button = tk.Button(
  window,
- text='Dark ',
+ text=' 🌑 ',
  command=dark,
  bg='grey12',
  fg='#C8C8C8')
-dark_theme_button.pack(anchor='se', side='bottom')
+dark_theme_button.place(x=106, y=1)
 
 # Generate Button
 generate_button = tk.Button(
@@ -116,6 +142,22 @@ clear_button = tk.Button(
  bg='grey12',
  fg='#C8C8C8')
 clear_button.pack(pady=5)
+
+clipboard_button = tk.Button(
+ window,
+ text='Copy',
+ command=clipboard,
+ bg='grey12',
+ fg='#C8C8C8')
+clipboard_button.place(x=38, y=1)
+
+save_button = tk.Button(
+ window,
+ text='Save ',
+ command=save,
+ bg='grey12',
+ fg='#C8C8C8')
+save_button.place(x=0, y=1)
 
 # Generated Password Label
 pass_lbl = tk.Label(
