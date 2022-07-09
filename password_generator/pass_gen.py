@@ -52,12 +52,6 @@ def clipboard():
         copy_label.pack(pady=21)
 
 
-def clear_password():
-    generated_pass_list.clear()
-    pass_lbl.config(text=generated_pass_list)
-    copy_label.destroy()
-
-
 def save():
     if len(generated_pass_list) == 0:
         ct.windll.user32.MessageBoxW(
@@ -67,6 +61,12 @@ def save():
             pswd_file.write(f'Password -> {final_pass}')
         ct.windll.user32.MessageBoxW(
          0, 'Successfully saved password in current directory', 'Success', 0)
+
+
+def clear_password():
+    generated_pass_list.clear()
+    pass_lbl.config(text=generated_pass_list)
+    copy_label.destroy()
 
 
 print('built by albjon V1.0')
