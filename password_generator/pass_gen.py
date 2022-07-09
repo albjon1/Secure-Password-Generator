@@ -38,7 +38,7 @@ def clipboard():
     global copy_label
     if len(generated_pass_list) == 0:
         ct.windll.user32.MessageBoxW(
-         0, 'Password has not been generated yet', 'Error Raised', 0)
+         0, 'Generate password before copying to clipboard', 'Copy Error', 0)
     else:
         text = final_pass
         clip_command = 'echo ' + text + '| clip'
@@ -61,40 +61,12 @@ def clear_password():
 def save():
     if len(generated_pass_list) == 0:
         ct.windll.user32.MessageBoxW(
-         0, 'Password has not been generated yet', 'Error Raised', 0)
+         0, 'Generate password before saving', 'Save Error', 0)
     else:
         with open('password.txt', 'w') as pswd_file:
             pswd_file.write(f'Password -> {final_pass}')
         ct.windll.user32.MessageBoxW(
-         0, 'Successfully saved password', 'Success', 0)
-
-
-def light():
-    window.configure(bg='white')
-    title_lbl.config(bg='white', fg='black')
-    input_box.config(bg='white', fg='black')
-    dark_theme_button.config(bg='white', fg='black')
-    light_theme_button.config(bg='white', fg='black')
-    generate_button.config(bg='white', fg='black')
-    clear_button.config(bg='white', fg='black')
-    pass_lbl.config(bg='white', fg='black')
-    clipboard_button.config(bg='white', fg='black')
-    save_button.config(bg='white', fg='black')
-    copy_label.config(bg='white')
-
-
-def dark():
-    window.configure(bg='grey12')
-    title_lbl.config(bg='grey12', fg='#C8C8C8')
-    input_box.config(bg='grey12', fg='#C8C8C8')
-    dark_theme_button.config(bg='grey12', fg='#C8C8C8')
-    light_theme_button.config(bg='grey12', fg='#C8C8C8')
-    generate_button.config(bg='grey12', fg='#C8C8C8')
-    clear_button.config(bg='grey12', fg='#C8C8C8')
-    pass_lbl.config(bg='grey12', fg='#C8C8C8')
-    clipboard_button.config(bg='grey12', fg='#C8C8C8')
-    save_button.config(bg='grey12', fg='#C8C8C8')
-    copy_label.config(bg='grey12')
+         0, 'Successfully saved password in current directory', 'Success', 0)
 
 
 print('built by albjon V1.0')
@@ -115,23 +87,6 @@ input_box = tk.Entry(
  selectbackground='#C8C8C8',
  insertbackground='#C8C8C8')
 input_box.pack(pady=20)
-
-# Theme Buttons
-light_theme_button = tk.Button(
- window,
- text=' 🌕 ',
- command=light,
- bg='grey12',
- fg='#C8C8C8')
-light_theme_button.place(x=77, y=1)
-
-dark_theme_button = tk.Button(
- window,
- text=' 🌑 ',
- command=dark,
- bg='grey12',
- fg='#C8C8C8')
-dark_theme_button.place(x=106, y=1)
 
 # Generate Button
 generate_button = tk.Button(
@@ -166,6 +121,14 @@ save_button = tk.Button(
  bg='grey12',
  fg='#C8C8C8')
 save_button.place(x=0, y=1)
+
+quit_button = tk.Button(
+ window,
+ text=' Quit ',
+ command=window.destroy,
+ bg='grey12',
+ fg='#C8C8C8')
+quit_button.pack(anchor='se', side='bottom')
 
 # Generated Password Label
 pass_lbl = tk.Label(
