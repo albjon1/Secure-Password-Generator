@@ -74,6 +74,7 @@ def light():
     pass_lbl.config(bg='white', fg='black')
     clipboard_button.config(bg='white', fg='black')
     save_button.config(bg='white', fg='black')
+    copy_label.config(bg='white')
 
 
 def dark():
@@ -87,6 +88,7 @@ def dark():
     pass_lbl.config(bg='grey12', fg='#C8C8C8')
     clipboard_button.config(bg='grey12', fg='#C8C8C8')
     save_button.config(bg='grey12', fg='#C8C8C8')
+    copy_label.config(bg='grey12')
 
 
 print('built by albjon V1.0')
