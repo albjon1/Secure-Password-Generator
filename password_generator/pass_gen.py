@@ -94,7 +94,7 @@ generate_button = tk.Button(
  text='Generate',
  command=generate_pass,
  bg='grey12',
- fg='#C8C8C8')
+ fg='green')
 generate_button.pack(pady=5)
 
 # Clear Button
